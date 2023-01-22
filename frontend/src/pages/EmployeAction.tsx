@@ -8,7 +8,7 @@ import EmployeForm from "../components/EmployeForm";
 import { Grid } from "@mui/material";
 import { useForm } from "react-hook-form";
 import ButtonRedirect from "../components/shared/ButtonRedirect";
-import { createEmploye } from '../store/EmployeSlice';
+import { createEmploye } from "../store/EmployeSlice";
 import { updateEmploye } from "../store/EmployeSlice";
 import { fetchEmployeById } from "../store/EmployeSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
@@ -19,10 +19,9 @@ const EmployeAction = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
-  const {singleRecord} = useSelector(
+  const { singleRecord } = useSelector(
     (state: StateValue) => state.employee || {}
   );
-
 
   const {
     handleSubmit,
@@ -48,26 +47,30 @@ const EmployeAction = () => {
         .catch((obj) => {
           console.log(obj.message ?? "Something went wrong");
         });
-    }
-    if(singleRecord){
-      const {first_name,last_name,email,number,gender,photo} = singleRecord;
-      const data = {
-        first_name,
-        last_name,
-        email,
-        number,
-        gender,
-        photo
+
+      if (singleRecord) {
+        const { first_name, last_name, email, number, gender, photo } =
+          singleRecord;
+        const data = {
+          first_name,
+          last_name,
+          email,
+          number,
+          gender,
+          photo,
+        };
+        reset(data);
       }
-      reset(data);
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, reset]);
 
   const onSubmit = async (data: Employe) => {
     if (id) {
       await dispatch(updateEmploye({ ...data, _id: id }));
     } else {
-      await dispatch(createEmploye(data));
+      await dispatch(createEmploye(data))
+      reset();
+      navigate('/employe/list')
     }
   };
 
