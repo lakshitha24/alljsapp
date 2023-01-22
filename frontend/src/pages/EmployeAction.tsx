@@ -13,6 +13,8 @@ import { updateEmploye } from "../store/EmployeSlice";
 import { fetchEmployeById } from "../store/EmployeSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { StateValue } from "../types/Employe.type";
+import EmployeValidationSchema from "../Validation/EmployeSchema";
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const EmployeAction = () => {
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ const EmployeAction = () => {
     reset,
     setError,
   } = useForm<Employe>({
+    resolver:yupResolver(EmployeValidationSchema),
     defaultValues: {
       first_name: "",
       last_name: "",

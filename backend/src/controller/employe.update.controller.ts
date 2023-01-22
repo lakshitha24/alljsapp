@@ -1,15 +1,16 @@
 import { Request, Response } from "express";
 import { updateEmployeData } from "../service/employe.update";
-import { itemSchemaValidation } from "../validation/validationSchema";
+import { itemUpdateSchemaValidation } from "../validation/validationSchema";
 
 const updateEmployee = async (req: Request, res: Response) => {
-  const { error, value } = itemSchemaValidation.validate(req.body);
+  const { error, value } = itemUpdateSchemaValidation.validate(req.body);
   const id = req.params.empId;
-  // if (error) {
-  //   return res.json(400).json({ error: error });
-  // }
+  if (error) {
+    return res.json(400).json({ error: error });
+  }
   try {
-    await updateEmployeData(req.body, id);
+    await updateEmployeData(value, id);
+    res.status(200).json({ message: 'Updated Successfully' });
   } catch (e) {
     res.json(400).json({ error: e });
   }
