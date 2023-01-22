@@ -7,9 +7,11 @@ const itemSchemaValidation = Joi.object({
   gender: Joi.string(),
   photo: Joi.string(),
 });
+
 const empIdValidation = Joi.object({
-  id: Joi.string().id().required,
+  id : Joi.string().hex().length(24),
 });
+
 const itemValidation = Joi.array().items(itemSchemaValidation);
 
 export { itemValidation, itemSchemaValidation, empIdValidation };

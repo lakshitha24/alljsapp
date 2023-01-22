@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { deleteEmploye } from '../service/employe.delete.service';
 
 const deleteEmployee =async (req:Request, res: Response) => {
-    const id = req.params.id ;
+    const id = req.params.empId;
     try{
         await deleteEmploye(id);
         res.status(200).json({ message: 'Employe Deleted Successfully' });
