@@ -5,7 +5,7 @@ type ButtonProps = {
   };
 const ViewChangeButton = ({ onClick }:ButtonProps) => {
     return (
-      <Button onClick={() => onClick()} color="secondary">
+      <Button onClick={() => onClick()} color="secondary" >
         <ListSharpIcon />
       </Button>
     );

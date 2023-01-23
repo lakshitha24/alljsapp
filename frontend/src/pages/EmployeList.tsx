@@ -62,7 +62,7 @@ const EmployeLists = () => {
     dispatch(deleteEmploye(id))
       .then(unwrapResult)
       .then((data: any) => {
-        console.log(data);
+        dispatch(fetchEmployee())
       })
       .catch((obj: { message: any }) => {
         console.log(obj.message);
@@ -82,10 +82,10 @@ const EmployeLists = () => {
   }
 
   return (
-    <Grid container spacing={2} className="layout-content">
-        <Grid item xs={12} md={3}>
-          <ViewChangeButton onClick={changeView} />
+    <Grid container spacing={2} className="layout-content" >
+        <Grid item xs={12} md={12} sx={{ p: 2 }}  container justifyContent="space-between" >
           <ButtonRedirect name="Add Employee" redirectPath="/employe/add"></ButtonRedirect>
+          <ViewChangeButton onClick={changeView} />
         </Grid>
         {data.length === 0 ? (
             <Empty/>

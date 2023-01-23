@@ -79,7 +79,9 @@ const EmployeAction = () => {
 
   return (
     <Grid container spacing={2} className="layout-content">
-      <ButtonRedirect name={"List View"} redirectPath={"/employe/list"} />
+      <Grid item xs={12} md={12} sx={{ p: 2 }}>
+      <ButtonRedirect name={"Redirect To List View"} redirectPath={"/employe/list"} />
+      </Grid>
       <Grid item xs={12} md={4}></Grid>
       <Grid item xs={12} md={4}>
         <EmployeForm

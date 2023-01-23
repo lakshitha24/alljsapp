@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 type ButtonProps = {
     name:string;
     redirectPath:string;
@@ -10,7 +10,7 @@ const ButtonRedirect = ({name,redirectPath}:ButtonProps) => {
 
     return (
         <Button onClick={()=>{navigate(redirectPath);}}>
-            {name}
+           <ArrowBackIcon/> {name}
         </Button>
     );
 };

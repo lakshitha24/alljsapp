@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 const Header:React.FC = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" className="background-color">
+        <AppBar position="static" className="header-color">
           <Toolbar>
             <h2>Employee Mangement DashBoard</h2>
           </Toolbar>
