@@ -10,7 +10,7 @@ const createEmployee = async (req: Request, res: Response) => {
   }
   try {
     const data = await createEmploye(value);
-    res.status(200).json(data);
+    res.status(201).json(data);
   } catch (e) {
     res.json(403).json({ error: e });
   }
