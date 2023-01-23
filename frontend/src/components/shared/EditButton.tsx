@@ -6,8 +6,8 @@ type ButtonProps = {
   };
 const EditButton = ({ onClick, id }:ButtonProps) => {
     return (
-      <Button onClick={() => onClick(id)} color="secondary">
-        <EditIcon />
+      <Button onClick={() => onClick(id)} color="primary" sx={{ backgroundColor:'#b59b2b' }}>
+        <EditIcon htmlColor="white" />
       </Button>
     );
 };

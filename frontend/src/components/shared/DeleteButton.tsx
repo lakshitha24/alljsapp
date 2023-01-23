@@ -7,8 +7,8 @@ type ButtonProps = {
 };
 const DeleteButton = ({ onClick, id }: ButtonProps) => {
   return (
-    <Button onClick={() => onClick(id)} color="secondary">
-      <DeleteForeverIcon />
+    <Button onClick={() => onClick(id)} color="warning" sx={{ backgroundColor:'#a71206', marginRight: 2 }}>
+      <DeleteForeverIcon htmlColor="white" />
     </Button>
   );
 };
