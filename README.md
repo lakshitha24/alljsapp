@@ -1,6 +1,6 @@
-# this is react project using typescript
+# This is react project using typescript
 
-## getting started
+# getting started
  there was Backend and frontend both include here
  first needs to run Backend
  ```bash
