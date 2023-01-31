@@ -18,10 +18,14 @@ import Empty from '../components/shared/Empty';
 import ButtonRedirect from '../components/shared/ButtonRedirect';
 
 const EmployeLists = () => {
+
   const dispatch = useAppDispatch();
   const [isCardView, setIsCardView] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  /**
+   * get Employe list 
+   */
   const getEmployeeLists = useRef(
     debounce(() => {
       dispatch(fetchEmployee())
@@ -41,6 +45,9 @@ const EmployeLists = () => {
     (state: StateValue) => state.employee || {}
   );
 
+  /**
+   * delete employe record by id
+   */
   const deleteEmployeHandler = (id: string) => {
     confirmAlert({
       title: "Delete",
@@ -69,10 +76,16 @@ const EmployeLists = () => {
       });
   };
 
+  /**
+   * redirect to list page into edit page 
+   */
   const redirectToEdit = (id: string) => {
     navigate(`/employe/edit/${id}`)
   };
 
+  /**
+   * list view change into table view and grid view 
+   */
   const changeView = () => {
     setIsCardView(!isCardView);
   };

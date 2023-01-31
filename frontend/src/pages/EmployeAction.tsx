@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "../store/useDispatch";
 import { useSelector } from "react-redux";
@@ -14,7 +13,7 @@ import { fetchEmployeById } from "../store/EmployeSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { StateValue } from "../types/Employe.type";
 import EmployeValidationSchema from "../Validation/EmployeSchema";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const EmployeAction = () => {
   const navigate = useNavigate();
@@ -25,6 +24,9 @@ const EmployeAction = () => {
     (state: StateValue) => state.employee || {}
   );
 
+   /**
+   * declare default values for employee form and schema validation for employee creation
+   */
   const {
     handleSubmit,
     control,
@@ -32,7 +34,7 @@ const EmployeAction = () => {
     reset,
     setError,
   } = useForm<Employe>({
-    resolver:yupResolver(EmployeValidationSchema),
+    resolver: yupResolver(EmployeValidationSchema),
     defaultValues: {
       first_name: "",
       last_name: "",
@@ -42,6 +44,9 @@ const EmployeAction = () => {
     },
   });
 
+  /**
+   * get employe details for update function
+   */
   useEffect(() => {
     if (id) {
       dispatch(fetchEmployeById(id))
@@ -71,16 +76,19 @@ const EmployeAction = () => {
     if (id) {
       await dispatch(updateEmploye({ ...data, _id: id }));
     } else {
-      await dispatch(createEmploye(data))
+      await dispatch(createEmploye(data));
       reset();
-      navigate('/employe/list')
+      navigate("/employe/list");
     }
   };
 
   return (
     <Grid container spacing={2} className="layout-content">
       <Grid item xs={12} md={12} sx={{ p: 2 }}>
-      <ButtonRedirect name={"Redirect To List View"} redirectPath={"/employe/list"} />
+        <ButtonRedirect
+          name={"Redirect To List View"}
+          redirectPath={"/employe/list"}
+        />
       </Grid>
       <Grid item xs={12} md={4}></Grid>
       <Grid item xs={12} md={4}>
