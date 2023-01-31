@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios,{ AxiosError } from "axios";
 import { Employe } from "../types/Employe.type";
 import {
   BASE_URL,
@@ -17,17 +17,35 @@ const employeApi = axios.create({
 });
 
 export const getAllEmployeeAPI = async () => {
-  const response = await employeApi.get(EMPLOYE_GETALL_API);
-  return response.data;
+  try {
+    const response = await employeApi.get(EMPLOYE_GETALL_API);
+    return response.data;
+  } catch (error: any) {
+    console.error(error);
+    let err = error as AxiosError;
+    throw err;
+  }
 };
 
 export const postEmployeAPI = async (employe: Employe) => {
-  return await employeApi.post(EMPLOYE_POST_API, employe);
+  try {
+    return await employeApi.post(EMPLOYE_POST_API, employe);
+  } catch (error: any) {
+    console.error(error);
+    let err = error as AxiosError;
+    throw err;
+  }
 };
 
 export const getEmployeByIdAPI = async (empId: string) => {
-  const response = await employeApi.get(EMPLOYE_GET_SINGLE_API(empId));
-  return response.data;
+  try {
+    const response = await employeApi.get(EMPLOYE_GET_SINGLE_API(empId));
+    return response.data;
+  } catch (error: any) {
+    console.error(error);
+    let err = error as AxiosError;
+    throw err;
+  }
 };
 
 export const deleteEmployeByIdAPI = async (empId: string) => {
@@ -35,7 +53,13 @@ export const deleteEmployeByIdAPI = async (empId: string) => {
 };
 
 export const updateEmployeeAPI = async (employee: Employe) => {
-  return await employeApi.put(EMPLOYE_UPDATE_API(employee._id), employee);
+  try {
+    return await employeApi.put(EMPLOYE_UPDATE_API(employee._id), employee);
+  } catch (error: any) {
+    console.error(error);
+    let err = error as AxiosError;
+    throw err;
+  }
 };
 
 export default employeApi;
