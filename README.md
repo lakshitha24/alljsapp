@@ -17,6 +17,11 @@ Backend can test using
 ```bash
 yarn run test
 ```
+
+frontend can test using
+```bash
+yarn run test
+``` 
 tech stack use here
 
 1.Node
