@@ -8,6 +8,7 @@ import GenderSelectBox from "./shared/GenderSelectBox";
 import ActionButton from "./shared/ActionButton";
 
 type FormSubmitDataProps = {
+  
   handleSubmit: FormEventHandler<HTMLFormElement> | undefined;
   errors: Partial<FieldErrorsImpl<Employe>>;
   control: Control<Employe> | undefined;

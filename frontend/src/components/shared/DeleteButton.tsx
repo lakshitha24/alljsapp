@@ -5,6 +5,7 @@ type ButtonProps = {
   onClick: Function;
   id?: string;
 };
+
 const DeleteButton = ({ onClick, id }: ButtonProps) => {
   return (
     <Button onClick={() => onClick(id)} color="warning" sx={{ backgroundColor:'#a71206', marginRight: 2 }}>

@@ -37,4 +37,5 @@ export const deleteEmployeByIdAPI = async (empId: string) => {
 export const updateEmployeeAPI = async (employee: Employe) => {
   return await employeApi.put(EMPLOYE_UPDATE_API(employee._id), employee);
 };
+
 export default employeApi;

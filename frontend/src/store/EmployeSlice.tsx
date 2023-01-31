@@ -28,18 +28,22 @@ export const createEmploye = createAsyncThunk(
   "/api/create/employe",
   postEmployeAPI
 );
+
 export const deleteEmploye = createAsyncThunk(
   "/api/deleteEmploye",
   deleteEmployeByIdAPI
 );
+
 export const fetchEmployee = createAsyncThunk<Employe[]>(
   "/api/get/employee",
   getAllEmployeeAPI
 );
+
 export const updateEmploye = createAsyncThunk(
   "/api/update/employe",
   updateEmployeeAPI
 );
+
 export const fetchEmployeById = createAsyncThunk(
   "/api/getEmpById/",
   getEmployeByIdAPI
