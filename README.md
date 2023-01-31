@@ -17,6 +17,11 @@ Backend can test using
 ```bash
 yarn run test
 ```
+
+frontend can test using
+```bash
+yarn run test
+``` 
 tech stack use here
 
 1.Node
@@ -28,6 +33,9 @@ this application deploy in Heroku
 
 API URL : https://employe-be.herokuapp.com/
 APP URL : https://employe-fe.herokuapp.com/employe/list
+
+# API documentation  
+https://documenter.getpostman.com/view/249099/2s935itS1k
 
 
 
