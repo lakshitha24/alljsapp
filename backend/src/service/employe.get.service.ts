@@ -1,10 +1,11 @@
 import { Employee } from "../model/employe.model";
+import { log } from '../logs/logger';
 
 const getAllEmployee = async () => {
   try {
     return await Employee.find();
   } catch (e) {
-    console.log(e);
+    log.info(e);
   }
 };
 

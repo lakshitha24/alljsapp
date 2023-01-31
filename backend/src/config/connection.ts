@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { config } from "./config";
+import { log } from '../logs/logger';
 
 const connectMongoDB = async () => {
   try {
@@ -7,9 +8,9 @@ const connectMongoDB = async () => {
     await mongoose.connect(`${config.mongoDB.URL}`, {
       retryWrites: true,
     });
-    console.log("DB connected");
+    log.info("DB connected");
   } catch (error) {
-    console.log(error);
+    log.info(error);
   }
 };
 

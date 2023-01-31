@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createEmploye } from "../service/employe.post.service";
 import { itemSchemaValidation } from "../validation/validationSchema";
+import { log } from '../logs/logger';
 
 const createEmployee = async (req: Request, res: Response) => {
   const { error, value } = itemSchemaValidation.validate(req.body);
@@ -12,7 +13,8 @@ const createEmployee = async (req: Request, res: Response) => {
     const data = await createEmploye(value);
     res.status(201).json(data);
   } catch (e) {
-    res.json(403).json({ error: e });
+    log.info(e);
+    return res.json(403).json({ status: 'error', error: e });
   }
 };
 

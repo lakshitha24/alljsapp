@@ -1,5 +1,6 @@
 import { Employe } from "../model/employe.interface";
 import { Employee } from "../model/employe.model";
+import { log } from '../logs/logger';
 
 const updateEmployeData = async (value: Employe, id: string) => {
   const { first_name, last_name, email, number, gender, photo } = value;
@@ -28,7 +29,7 @@ const updateEmployeData = async (value: Employe, id: string) => {
     }
     updatedEmploye.save();
   } catch (e) {
-    console.log(e);
+    log.info(e);
   }
 };
 export { updateEmployeData }

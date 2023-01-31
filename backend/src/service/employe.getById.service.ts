@@ -1,4 +1,5 @@
 import { Employee } from "../model/employe.model";
+import { log } from '../logs/logger';
 
 const getEmployeByID = async (id: string) => {
   try {
@@ -18,7 +19,7 @@ const getEmployeByID = async (id: string) => {
       photo: photo,
     };
   } catch (e) {
-    console.log(e);
+    log.info(e);
   }
 };
 

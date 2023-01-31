@@ -1,4 +1,5 @@
 import { Employee } from "../model/employe.model";
+import { log } from '../logs/logger';
 
 const deleteEmploye = async (id: string) => {
   try {
@@ -7,7 +8,7 @@ const deleteEmploye = async (id: string) => {
       throw new Error("Could not find");
     }
   } catch (e) {
-    console.log(e);
+    log.info(e);
   }
 };
 
