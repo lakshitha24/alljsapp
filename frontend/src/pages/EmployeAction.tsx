@@ -14,6 +14,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { StateValue } from "../types/Employe.type";
 import EmployeValidationSchema from "../Validation/EmployeSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {AlertMessage} from '../components/shared/Alert';
 
 const EmployeAction = () => {
   
@@ -54,7 +55,7 @@ const EmployeAction = () => {
         .then(unwrapResult)
         .then((data) => {})
         .catch((obj) => {
-          console.log(obj.message ?? "Something went wrong");
+          AlertMessage('Something went wrong','error');
         });
 
       if (singleRecord) {
@@ -80,6 +81,7 @@ const EmployeAction = () => {
       await dispatch(createEmploye(data));
       reset();
       navigate("/employe/list");
+      AlertMessage('Successfully Added','success');
     }
   };
 

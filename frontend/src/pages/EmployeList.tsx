@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import ViewChangeButton from "../components/shared/ViewChangeButton";
-import EmployeeListGrid from '../components/EmployeeListGrid';
+import EmployeeListGrid from "../components/EmployeeListGrid";
 import EmployeeListTable from "../components/EmployeListTable";
 import { confirmAlert } from "react-confirm-alert";
 import { useSelector } from "react-redux";
@@ -13,18 +13,18 @@ import Loader from "../components/shared/Loader";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { debounce } from "lodash";
-import { useNavigate } from 'react-router-dom';
-import Empty from '../components/shared/Empty';
-import ButtonRedirect from '../components/shared/ButtonRedirect';
+import { useNavigate } from "react-router-dom";
+import Empty from "../components/shared/Empty";
+import ButtonRedirect from "../components/shared/ButtonRedirect";
+import {AlertMessage} from '../components/shared/Alert';
 
 const EmployeLists = () => {
-
   const dispatch = useAppDispatch();
   const [isCardView, setIsCardView] = useState(true);
   const navigate = useNavigate();
 
   /**
-   * get Employe list 
+   * get Employe list
    */
   const getEmployeeLists = useRef(
     debounce(() => {
@@ -32,7 +32,7 @@ const EmployeLists = () => {
         .unwrap()
         .then((data) => {})
         .catch((obj) => {
-          console.log(obj.message ?? "Something went wrong");
+          AlertMessage('Something went wrong','error');
         });
     }, 600)
   ).current;
@@ -69,22 +69,24 @@ const EmployeLists = () => {
     dispatch(deleteEmploye(id))
       .then(unwrapResult)
       .then((data: any) => {
-        dispatch(fetchEmployee())
+        dispatch(fetchEmployee());
+        AlertMessage('Successfully deleted !','success');
       })
       .catch((obj: { message: any }) => {
         console.log(obj.message);
+        AlertMessage('Error on delet !','error');
       });
   };
 
   /**
-   * redirect to list page into edit page 
+   * redirect to list page into edit page
    */
   const redirectToEdit = (id: string) => {
-    navigate(`/employe/edit/${id}`)
+    navigate(`/employe/edit/${id}`);
   };
 
   /**
-   * list view change into table view and grid view 
+   * list view change into table view and grid view
    */
   const changeView = () => {
     setIsCardView(!isCardView);
@@ -95,27 +97,37 @@ const EmployeLists = () => {
   }
 
   return (
-    <Grid container spacing={2} className="layout-content" >
-        <Grid item xs={12} md={12} sx={{ p: 2 }}  container justifyContent="space-between" >
-          <ButtonRedirect name="Add Employee" redirectPath="/employe/add"></ButtonRedirect>
-          <ViewChangeButton onClick={changeView} />
-        </Grid>
-        {data.length === 0 ? (
-            <Empty/>
-        ) : isCardView ? (
-          <EmployeeListGrid
-            employee={data}
-            deleteEmploye={deleteEmployeHandler}
-            redirectToEdit={redirectToEdit}
-          ></EmployeeListGrid>
-        ) : (
-          <EmployeeListTable
-            employee={data}
-            deleteEmploye={deleteEmployeHandler}
-            redirectToEdit={redirectToEdit}
-          ></EmployeeListTable>
-        )}
+    <Grid container spacing={2} className="layout-content">
+      <Grid
+        item
+        xs={12}
+        md={12}
+        sx={{ p: 2 }}
+        container
+        justifyContent="space-between"
+      >
+        <ButtonRedirect
+          name="Add Employee"
+          redirectPath="/employe/add"
+        ></ButtonRedirect>
+        <ViewChangeButton onClick={changeView} />
       </Grid>
+      {data.length === 0 ? (
+        <Empty />
+      ) : isCardView ? (
+        <EmployeeListGrid
+          employee={data}
+          deleteEmploye={deleteEmployeHandler}
+          redirectToEdit={redirectToEdit}
+        ></EmployeeListGrid>
+      ) : (
+        <EmployeeListTable
+          employee={data}
+          deleteEmploye={deleteEmployeHandler}
+          redirectToEdit={redirectToEdit}
+        ></EmployeeListTable>
+      )}
+    </Grid>
   );
 };
 
