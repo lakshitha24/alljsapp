@@ -37,5 +37,6 @@ APP URL : https://employe-fe.herokuapp.com/employe/list
 # API documentation  
 https://documenter.getpostman.com/view/249099/2s935itS1k
 
+# Sentry's React SDK enables automatic reporting of errors and exceptions
 
 
