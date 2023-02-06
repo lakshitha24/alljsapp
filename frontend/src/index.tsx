@@ -10,16 +10,13 @@ import { BrowserTracing } from '@sentry/tracing';
 Sentry.init({
   dsn: "https://c96204075a774be0b15588daa3238a3c@o4504614049284096.ingest.sentry.io/4504614050988032",
   integrations: [new BrowserTracing()],
-
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
 });
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
